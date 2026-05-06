@@ -244,6 +244,7 @@ Includes:
 ## 👥 Team & Credits
 
 **Mata Kuliah**: Pengolahan Bahasa Alami (PBA)
+
 **Kelompok**: 5
 
 - Celine Auriel (5026221004)
@@ -253,7 +254,8 @@ Includes:
 - Ratna Amalia Azzahra (5026221209)
 
 **Departemen**: Sistem Informasi
-**Institusi**:: Institut Teknologi Sepuluh Nopember (ITS) Surabaya
+
+**Institusi**: Institut Teknologi Sepuluh Nopember (ITS) Surabaya
 
 ---
 
