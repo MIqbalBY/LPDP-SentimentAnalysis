@@ -96,7 +96,7 @@ LPDP-SentimentAnalysis/
 ### Phase Overview
 
 | Phase | Notebook File | Deskripsi |
-|-------|---------------|-----------|
+| --- | --- | --- |
 | 1 | `notebooks/1. ScrappingArtikelLPDP.ipynb` | Scraping artikel metadata via GNews |
 | 2 | `notebooks/2. ScrappingKontenLPDP.ipynb` | Scraping konten + labeling manual |
 | 3 | `notebooks/3. TopicModellingLPDP.ipynb` | BERTopic: discover 4 topik |
@@ -110,14 +110,14 @@ LPDP-SentimentAnalysis/
 
 **Output Locations:**
 
-- Phase 1: `data/raw/dataset_lpdp_sorted.csv`
-- Phase 2: `data/raw/dataset_lpdp_konten_raw.csv`
-- Phase 4: `data/processed/dataset_lpdp_preprocessed*.csv`
-- Phase 5: `outputs/output_split/X_train_test_tfidf.pkl`
-- Phase 7: `outputs/output_pos_tagging/`
-- Phase 8: `outputs/phase8_hasil_analisis_sentimen.csv`
-- Phase 9: `outputs/output_split/track_*.csv`
-- Phase 10: `outputs/modeling_results_tier1_tier2_tier3.csv`
+- **Phase 1**: `data/raw/dataset_lpdp_sorted.csv`
+- **Phase 2**: `data/raw/dataset_lpdp_konten_raw.csv`
+- **Phase 4**: `data/processed/dataset_lpdp_preprocessed*.csv`
+- **Phase 5**: `outputs/output_split/X_train_test_tfidf.pkl`
+- **Phase 7**: `outputs/output_pos_tagging/`
+- **Phase 8**: `outputs/phase8_hasil_analisis_sentimen.csv`
+- **Phase 9**: `outputs/output_split/track_*.csv`
+- **Phase 10**: `outputs/modeling_results_tier1_tier2_tier3.csv`
 
 ### Dual-Track Approach
 
@@ -184,7 +184,7 @@ jupyter notebook notebooks/10.\ Modeling_Tier1_Tier2_Tier3_LPDP.ipynb
 ## 📚 Technology Stack
 
 | Layer | Technology |
-|-------|-----------|
+| --- | --- |
 | **Scraping** | `python-gnews`, `requests`, `BeautifulSoup` |
 | **Data Processing** | `pandas`, `numpy` |
 | **NLP Preprocessing** | `NLTK`, `Sastrawi`, `regex` |
@@ -201,9 +201,10 @@ jupyter notebook notebooks/10.\ Modeling_Tier1_Tier2_Tier3_LPDP.ipynb
 
 ## 📖 Documentation
 
-Dokumentasi lengkap pipeline dapat dilihat di [`docs/Pipeline_NLP_LPDP.md`](docs/Pipeline_NLP_LPDP.md)
+Dokumentasi lengkap pipeline dapat dilihat di [`docs/Pipeline_NLP_LPDP.md`](docs/Pipeline_NLP_LPDP.md).
 
 Includes:
+
 - Detailed phase descriptions
 - Checklist dan pembagian tugas
 - Tech stack specifications
@@ -237,15 +238,14 @@ Includes:
 ## 👥 Team & Credits
 
 **Mata Kuliah**: Pengolahan Bahasa Alami  
-**Kelompok**: 5
-**Departemen**: Sistem Informasi
-**Institusi**:: Institut Teknologi Sepuluh Nopember (ITS) Surabaya
+**Kelompok**: 5  
+**Institusi**: Universitas Indonesia
 
 ---
 
 ## 📄 License
 
-MIT License - Lihat file [LICENSE](LICENSE) untuk detail lengkap.
+MIT License - Lihat file [LICENSE](LICENSE) untuk detail lengkap
 
 ---
 
@@ -256,6 +256,7 @@ MIT License - Lihat file [LICENSE](LICENSE) untuk detail lengkap.
 3. Commit changes (`git commit -m 'Add improvement'`)
 4. Push ke branch (`git push origin feature/improvement`)
 5. Buat Pull Request
+
 
 ---
 
