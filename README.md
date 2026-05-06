@@ -245,7 +245,7 @@ Includes:
 
 ## 📄 License
 
-MIT License - Lihat file [LICENSE](LICENSE) untuk detail lengkap
+MIT License - Lihat file [LICENSE](LICENSE) untuk detail lengkap.
 
 ---
 
@@ -256,7 +256,6 @@ MIT License - Lihat file [LICENSE](LICENSE) untuk detail lengkap
 3. Commit changes (`git commit -m 'Add improvement'`)
 4. Push ke branch (`git push origin feature/improvement`)
 5. Buat Pull Request
-
 
 ---
 

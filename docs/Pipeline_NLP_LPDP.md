@@ -27,7 +27,7 @@
 
 
 | Item                             | Detail                                                                                                 |
-| :------------------------------- | :----------------------------------------------------------------------------------------------------- |
+| --- | --- |
 | **Tujuan**                       | Mengklasifikasikan sentimen artikel berita LPDP (Positive / Negative / Neutral) menggunakan teknik NLP |
 | **Bahasa**                       | Indonesia                                                                                              |
 | **Sumber Data**                  | Google News RSS via library GNews                                                                      |
@@ -205,7 +205,7 @@ flowchart LR
 ### Tabel Ringkasan Track per Phase
 
 | Phase | Notebook | Track A (`text_clean`) | Track B (`text_bert`) | Raw Content |
-| :---: | :--- | :--- | :--- | :--- |
+| --- | --- | --- | --- | --- |
 | 1 | `1. ScrappingArtikelLPDP.ipynb` | 🔀 shared | 🔀 shared | 🔀 shared |
 | 2 | `2. ScrappingKontenLPDP.ipynb` | 🔀 shared | 🔀 shared | 🔀 shared |
 | 3 | `3. TopicModellingLPDP.ipynb` | 🔀 shared | 🔀 shared | 🔀 shared |
@@ -228,7 +228,7 @@ flowchart LR
 
 
 | PIC        | Phase Utama    | Tanggung Jawab                                                  |
-| :--------- | :------------- | :-------------------------------------------------------------- |
+| --- | --- | --- |
 | **Iqbal**  | Phase 1, 4, 9  | Scraping GNews, preprocessing, train/test split                 |
 | **Amel**   | Phase 2, 7, 13 | Validasi URL + labeling manual, POS Tagging, advanced NLP       |
 | **Celine** | Phase 3, 8, 11 | BERTopic topic discovery, sentimen leksikon, evaluation metrics |
@@ -319,7 +319,7 @@ flowchart LR
 
 
 | Kategori     | Keywords                                                           |
-| :----------- | :----------------------------------------------------------------- |
+| --- | --- |
 | **General**  | `LPDP`, `Beasiswa+LPDP`, `Program+LPDP`                            |
 | **Aktor**    | `Awardee+LPDP`, `Alumni+LPDP`, `Mahasiswa+LPDP`, `Penerima+LPDP`   |
 | **Konteks**  | `Polemik+LPDP`, `Wawancara+LPDP`, `Pendaftar+LPDP`, `Seleksi+LPDP` |
@@ -365,7 +365,7 @@ flowchart LR
 
 
 | Status      | Kriteria                                                                   |
-| :---------- | :------------------------------------------------------------------------- |
+| --- | --- |
 | **Valid**   | URL bisa diakses, konten relevan tentang LPDP, bukan duplikat              |
 | **Invalid** | URL mati (404/403), redirect ke homepage, konten tidak relevan, video-only |
 
@@ -375,7 +375,7 @@ Setiap artikel yang valid diberi label sentimen berdasarkan **nada keseluruhan**
 
 
 | Label        | Deskripsi                                                           | Contoh Topik                                       |
-| :----------- | :------------------------------------------------------------------ | :------------------------------------------------- |
+| --- | --- | --- |
 | **Positive** | Artikel bernada positif, apresiatif, atau informatif-netral-positif | Kisah sukses alumni, pembukaan pendaftaran baru    |
 | **Negative** | Artikel bernada kritis, negatif, atau kontroversial                 | Polemik paspor, pelanggaran kontrak, kritik publik |
 | **Neutral**  | Artikel informatif murni tanpa tendensi emosional                   | Pengumuman resmi, data statistik, FAQ              |
@@ -386,7 +386,7 @@ Setiap artikel yang valid diberi label sentimen berdasarkan **nada keseluruhan**
 
 
 | PIC        | Total Baris | Artikel Valid | Terlabel | Positive | Neutral | Negative | Status     |
-| :--------- | :---------: | :-----------: | :-------: | :------: | :-----: | :------: | :--------- |
+| --- | --- | --- | --- | --- | --- | --- | --- |
 | **Amel**   |     388     |      312      |    312    |    55    |   135   |   122   | ✅ Selesai |
 | **Celine** |     388     |      315      |    315    |    81    |   130   |   104   | ✅ Selesai |
 | **Iqbal**  |     387     |      332      |    332    |   197   |   89   |    46    | ✅ Selesai |
@@ -400,7 +400,7 @@ File Google Sheets diekspor sebagai CSV dengan kolom berikut. **Hanya baris `Val
 
 
 | Kolom          | Tipe    | Keterangan                                |
-| :------------- | :------ | :---------------------------------------- |
+| --- | --- | --- |
 | `Title`        | string  | Judul artikel dari Google News            |
 | `Release Date` | string  | Tanggal rilis (format RFC 2822)           |
 | `URL`          | string  | Link artikel asli                         |
@@ -448,7 +448,7 @@ Google News RSS hanya menyediakan **deskripsi singkat** (1–2 kalimat snippet).
 
 
 | Data        | Sumber                  | Panjang Rata-rata | Kualitas untuk NLP       |
-| :---------- | :---------------------- | :---------------- | :----------------------- |
+| --- | --- | --- | --- |
 | `Deskripsi` | Google News RSS snippet | ~20–50 kata      | Kurang — terlalu pendek |
 | `Content`   | Scraping dari URL asli  | ~200–1.000 kata  | Baik — paragraf lengkap |
 
@@ -456,7 +456,7 @@ Google News RSS hanya menyediakan **deskripsi singkat** (1–2 kalimat snippet).
 
 
 | Library         | Keunggulan                                                  |
-| :-------------- | :---------------------------------------------------------- |
+| --- | --- |
 | **newspaper3k** | Otomatis extract judul, teks, tanggal; support multi-bahasa |
 | **trafilatura** | Lebih robust untuk edge case (paywall, JS-rendered)         |
 
@@ -498,7 +498,7 @@ print(f"Content extracted: {success_rate:.1%}")
 
 
 | Metric         | Target                        |
-| :------------- | :---------------------------- |
+| --- | --- |
 | **Min length** | ≥ 50 karakter (filter noise) |
 
 ```python
@@ -519,20 +519,20 @@ print(df_valid['content_len'].describe())
 
 
 | Label              |  Jumlah  | Proporsi |
-| :----------------- | :-------: | :------: |
-| **Neutral**        |    506    |  36,9%  |
-| **Positive**       |    462    |  33,7%  |
-| **Negative**       |    402    |  29,4%  |
+| --- | --- | --- |
+| **Neutral** | 506 | 36,9% |
+| **Positive** | 462 | 33,7% |
+| **Negative** | 402 | 29,4% |
 | **Total berlabel** | **1.370** | **100%** |
 
 ### Distribusi Label (Artikel Diekspor — `dataset_lpdp_konten_raw.csv` — 1.038 Total)
 
 
 | Label              |  Jumlah  | Proporsi |
-| :----------------- | :-------: | :------: |
-| **Positive**       |    385    |  37,1%  |
-| **Neutral**        |    342    |  33,0%  |
-| **Negative**       |    311    |  30,0%  |
+| --- | --- | --- |
+| **Positive** | 385 | 37,1% |
+| **Neutral** | 342 | 33,0% |
+| **Negative** | 311 | 30,0% |
 | **Total diekspor** | **1.038** | **100%** |
 
 > **Catatan:** 332 artikel (24,2%) tidak berhasil di-scrape (URL mati, paywall, timeout) dan dikecualikan dari Phase 3.
