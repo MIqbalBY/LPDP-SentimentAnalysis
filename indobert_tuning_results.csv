@@ -1,0 +1,2 @@
+learning_rate,batch_size,Accuracy,Macro F1,Weighted F1
+2e-05,8,0.6971153846153846,0.701321651340345,0.6960490444712674

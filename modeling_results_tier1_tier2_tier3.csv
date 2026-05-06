@@ -1,0 +1,5 @@
+Tier,Model,Best CV Macro F1,Accuracy,Macro F1,Weighted F1,Best Params
+Tier 1,Logistic Regression,0.6647877611821149,0.7211538461538461,0.7253213679359689,0.7214791787160209,"{'clf__C': 10.0, 'tfidf__max_df': 0.95, 'tfidf__max_features': 5000, 'tfidf__min_df': 2, 'tfidf__ngram_range': (1, 3), 'tfidf__sublinear_tf': True}"
+Tier 1,Linear SVC,0.662754093308844,0.7163461538461539,0.7205188410941078,0.7165211269898109,"{'clf__C': 1.0, 'tfidf__max_df': 0.9, 'tfidf__max_features': 5000, 'tfidf__min_df': 2, 'tfidf__ngram_range': (1, 2), 'tfidf__sublinear_tf': True}"
+Tier 1,Naive Bayes,0.6666289470275558,0.7163461538461539,0.7190443106376408,0.7151776329853565,"{'clf__alpha': 0.1, 'tfidf__max_df': 0.9, 'tfidf__max_features': 5000, 'tfidf__min_df': 1, 'tfidf__ngram_range': (1, 1), 'tfidf__sublinear_tf': True}"
+Tier 2,IndoBERT Fine-tuning,,0.6971153846153846,0.701321651340345,0.6960490444712674,"{'learning_rate': 2e-05, 'batch_size': 8}"
