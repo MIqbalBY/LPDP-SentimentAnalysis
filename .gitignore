@@ -1,0 +1,73 @@
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Large data files (keep structure, ignore large CSVs during initial runs)
+# Uncomment these if needed:
+# data/raw/*.csv
+# data/processed/*.csv
+# outputs/*.csv
+
+# Model files & checkpoints (keep structure, ignore weights)
+*.pkl
+*.pickle
+*.h5
+*.pth
+*.pt
+*.bin
+
+# Temporary files
+*.tmp
+*.log
+*.bak
+.pytest_cache/
+.coverage
+htmlcov/
+
+# OS specific
+Thumbs.db
+.DS_Store
+
+# User-specific
+.user
+*.user
+
+# Dependencies cache
+node_modules/

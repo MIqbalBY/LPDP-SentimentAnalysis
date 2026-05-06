@@ -95,18 +95,29 @@ LPDP-SentimentAnalysis/
 
 ### Phase Overview
 
-| Phase | Notebook | Output | Deskripsi |
-|-------|----------|--------|-----------|
-| 1 | `notebooks/1. ScrappingArtikelLPDP.ipynb` | `data/raw/dataset_lpdp_sorted.csv` | Scraping metadata artikel via GNews (20 keywords) |
-| 2 | `notebooks/2. ScrappingKontenLPDP.ipynb` | `data/raw/dataset_lpdp_konten_raw.csv` | Scraping konten artikel + manual labeling |
-| 3 | `notebooks/3. TopicModellingLPDP.ipynb` | Topic assignments | BERTopic: discover 4 topik utama |
-| 4 | `notebooks/4. PreprocessingLPDP.ipynb` | `data/processed/dataset_lpdp_preprocessed*.csv` | **Track A**: Heavy (stemming+stopword) / **Track B**: Minimal (BERT-ready) |
-| 5 | `notebooks/5. FeatureExtractionLPDP.ipynb` | `outputs/output_split/X_train_test_tfidf.pkl` | Feature extraction TF-IDF (Track A) |
-| 6 | `notebooks/6. NER_Visualisasi_AnalisisLPDP.ipynb` | NER tags | Named Entity Recognition using IndoBERT |
-| 7 | `notebooks/7. POSTaggingLPDP.ipynb` | `outputs/output_pos_tagging/` | Part-of-Speech tagging using Stanza |
-| 8 | `notebooks/8. TextBlob&LexiconSentimentLPDP.ipynb` | `outputs/phase8_hasil_analisis_sentimen.csv` | Lexicon-based sentiment analysis (InSet + TextBlob) |
-| 9 | `notebooks/9. TrainTestSplitLPDP.ipynb` | `outputs/output_split/track_*.csv` | Stratified 80:20 train/test split |
-| 10 | `notebooks/10. Modeling_Tier1_Tier2_Tier3_LPDP.ipynb` | Model artifacts | **Tier 1**: Classical ML (NB, LR, LinearSVC) / **Tier 2**: IndoBERT fine-tuning |
+| Phase | Notebook File | Deskripsi |
+|-------|---------------|-----------|
+| 1 | `notebooks/1. ScrappingArtikelLPDP.ipynb` | Scraping artikel metadata via GNews |
+| 2 | `notebooks/2. ScrappingKontenLPDP.ipynb` | Scraping konten + labeling manual |
+| 3 | `notebooks/3. TopicModellingLPDP.ipynb` | BERTopic: discover 4 topik |
+| 4 | `notebooks/4. PreprocessingLPDP.ipynb` | Preprocessing Track A/B |
+| 5 | `notebooks/5. FeatureExtractionLPDP.ipynb` | TF-IDF feature extraction |
+| 6 | `notebooks/6. NER_Visualisasi_AnalisisLPDP.ipynb` | Named Entity Recognition |
+| 7 | `notebooks/7. POSTaggingLPDP.ipynb` | POS tagging (Stanza) |
+| 8 | `notebooks/8. TextBlob&LexiconSentimentLPDP.ipynb` | Lexicon-based sentiment |
+| 9 | `notebooks/9. TrainTestSplitLPDP.ipynb` | Train/test split (80:20) |
+| 10 | `notebooks/10. Modeling_Tier1_Tier2_Tier3_LPDP.ipynb` | Model training |
+
+**Output Locations:**
+
+- Phase 1: `data/raw/dataset_lpdp_sorted.csv`
+- Phase 2: `data/raw/dataset_lpdp_konten_raw.csv`
+- Phase 4: `data/processed/dataset_lpdp_preprocessed*.csv`
+- Phase 5: `outputs/output_split/X_train_test_tfidf.pkl`
+- Phase 7: `outputs/output_pos_tagging/`
+- Phase 8: `outputs/phase8_hasil_analisis_sentimen.csv`
+- Phase 9: `outputs/output_split/track_*.csv`
+- Phase 10: `outputs/modeling_results_tier1_tier2_tier3.csv`
 
 ### Dual-Track Approach
 
@@ -116,12 +127,12 @@ DATA → PREPROCESSING
          │  ├─ Tokenization + Lowercase
          │  ├─ Stopword removal
          │  ├─ Stemming (Sastrawi)
-         │  └─ Feature: TF-IDF → Classical ML (Naive Bayes, Logistic Regression, LinearSVC)
+         │  └─ TF-IDF → Classical ML
          │
-         └─ TRACK B: Minimal Preprocessing  
+         └─ TRACK B: Minimal Preprocessing
             ├─ Tokenization + Lowercase
             ├─ HTML normalization
-            └─ Feature: IndoBERT tokenizer → IndoBERT Fine-tuning
+            └─ IndoBERT tokenizer → Fine-tuning
 ```
 
 ---
@@ -161,21 +172,12 @@ jupyter notebook notebooks/10.\ Modeling_Tier1_Tier2_Tier3_LPDP.ipynb
 
 ## 📊 Key Features
 
-✅ **End-to-End NLP Pipeline**  
-Dari scraping → preprocessing → feature extraction → modeling → evaluation
-
-✅ **Dual-Track Experiment Design**  
-Track A: TF-IDF + Classical ML (NB, LR, LinearSVC)  
-Track B: IndoBERT fine-tuning
-
-✅ **Indonesian NLP Techniques**  
-Sastrawi stemming, InSet leksikon sentimen, Stanza POS tagging, IndoBERT base model
-
-✅ **Comprehensive Linguistic Analysis**  
-Named Entity Recognition (NER), Part-of-Speech (POS) tagging, Topic discovery (BERTopic), Sentiment lexicon analysis
-
-✅ **Rich Visualization & Analysis**  
-Word clouds, sentiment distribution, topic analysis, POS heatmaps, confusion matrices, label distribution charts
+- **End-to-End NLP Pipeline**: Dari scraping → preprocessing → feature extraction →
+  modeling → evaluation
+- **Dual-Track Experiment Design**: Track A (TF-IDF + ML) & Track B (IndoBERT)
+- **Indonesian NLP Techniques**: Sastrawi stemming, InSet lexicon, Stanza POS, IndoBERT
+- **Comprehensive Linguistic Analysis**: NER, POS tagging, topic discovery, sentiment
+- **Rich Visualization & Analysis**: Wordclouds, heatmaps, distribution charts
 
 ---
 
@@ -235,8 +237,9 @@ Includes:
 ## 👥 Team & Credits
 
 **Mata Kuliah**: Pengolahan Bahasa Alami  
-**Kelompok**: 5  
-**Institusi**: Universitas Indonesia / STMIK Bandung
+**Kelompok**: 5
+**Departemen**: Sistem Informasi
+**Institusi**:: Institut Teknologi Sepuluh Nopember (ITS) Surabaya
 
 ---
 
