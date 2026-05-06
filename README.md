@@ -1,6 +1,8 @@
 # LPDP Sentiment Analysis Pipeline
 
-**Analisis Sentimen Artikel Berita LPDP menggunakan NLP end-to-end**
+## Deskripsi
+
+Analisis Sentimen Artikel Berita LPDP menggunakan NLP end-to-end
 
 Pipeline ini mengklasifikasikan sentimen artikel berita LPDP (Lembaga Pengelola Dana Pendidikan) ke dalam 3 kelas: **Positif**, **Negatif**, dan **Netral**. Menggunakan dual-track approach dengan TF-IDF + model klasik serta IndoBERT fine-tuning.
 
@@ -21,7 +23,7 @@ Pipeline ini mengklasifikasikan sentimen artikel berita LPDP (Lembaga Pengelola 
 
 ## 📁 Project Structure
 
-```
+```text
 LPDP-SentimentAnalysis/
 ├── notebooks/                          # Jupyter Notebooks (Phase 1-10)
 │   ├── 1. ScrappingArtikelLPDP.ipynb              # Phase 1: Scraping artikel
@@ -121,7 +123,7 @@ LPDP-SentimentAnalysis/
 
 ### Dual-Track Approach
 
-```
+```text
 DATA → PREPROCESSING
          ├─ TRACK A: Heavy Preprocessing
          │  ├─ Tokenization + Lowercase
@@ -215,20 +217,24 @@ Includes:
 ## 📁 Data Dictionary
 
 ### Raw Data (data/raw/)
+
 - **dataset_lpdp_konten_raw.csv**: 1.038 artikel dengan fields: `url`, `title`, `content`, `published_date`, `sentiment_label`, `topic`
 - **dataset_lpdp_sorted.csv**: 1.370 artikel metadata: `url`, `title`, `source`, `published_date`, `sentiment_label`
 
 ### Processed Data (data/processed/)
+
 - **dataset_lpdp_preprocessed.csv**: Track A dengan `text_clean` (heavy preprocessing)
 - **dataset_lpdp_preprocessed_bert.csv**: Track B dengan `text_bert` (minimal preprocessing)
 - **dataset_lpdp_manual_stats.csv**: Statistik labeling distribution
 
 ### Lexicon Data (data/lexicon/)
+
 - **positive.tsv**: Positive words dengan weight score
 - **negative.tsv**: Negative words dengan weight score
 - **slang_id.csv**: Mapping slang → formal Indonesian
 
 ### Output Data (outputs/)
+
 - **phase8_hasil_analisis_sentimen.csv**: Hasil lexicon-based sentiment (confidence scores per class)
 - **modeling_results_tier1_tier2_tier3.csv**: Classical ML performa (accuracy, precision, recall, F1)
 - **indobert_tuning_results.csv**: IndoBERT fine-tuning results per epoch
@@ -237,9 +243,17 @@ Includes:
 
 ## 👥 Team & Credits
 
-**Mata Kuliah**: Pengolahan Bahasa Alami  
-**Kelompok**: 5  
-**Institusi**: Universitas Indonesia
+**Mata Kuliah**: Pengolahan Bahasa Alami (PBA)
+**Kelompok**: 5
+
+- Celine Auriel (5026221004)
+- Nida Aulia Amartika (5026221095)
+- Muhammad Iqbal Baiduri Yamani (5026221103)
+- Salwa Iqlima A. (5026221098)
+- Ratna Amalia Azzahra (5026221209)
+
+**Departemen**: Sistem Informasi
+**Institusi**:: Institut Teknologi Sepuluh Nopember (ITS) Surabaya
 
 ---
 

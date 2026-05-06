@@ -25,7 +25,6 @@
 
 ## Gambaran Umum
 
-
 | Item                             | Detail                                                                                                 |
 | --- | --- |
 | **Tujuan**                       | Mengklasifikasikan sentimen artikel berita LPDP (Positive / Negative / Neutral) menggunakan teknik NLP |
@@ -226,7 +225,6 @@ flowchart LR
 
 ### Pembagian PIC per Phase
 
-
 | PIC        | Phase Utama    | Tanggung Jawab                                                  |
 | --- | --- | --- |
 | **Iqbal**  | Phase 1, 4, 9  | Scraping GNews, preprocessing, train/test split                 |
@@ -317,7 +315,6 @@ flowchart LR
 
 ### Strategi 20 Keywords (5 Kategori)
 
-
 | Kategori     | Keywords                                                           |
 | --- | --- |
 | **General**  | `LPDP`, `Beasiswa+LPDP`, `Program+LPDP`                            |
@@ -363,7 +360,6 @@ flowchart LR
 
 ### Kriteria Validasi
 
-
 | Status      | Kriteria                                                                   |
 | --- | --- |
 | **Valid**   | URL bisa diakses, konten relevan tentang LPDP, bukan duplikat              |
@@ -372,7 +368,6 @@ flowchart LR
 ### Labeling Manual
 
 Setiap artikel yang valid diberi label sentimen berdasarkan **nada keseluruhan** artikel:
-
 
 | Label        | Deskripsi                                                           | Contoh Topik                                       |
 | --- | --- | --- |
@@ -383,7 +378,6 @@ Setiap artikel yang valid diberi label sentimen berdasarkan **nada keseluruhan**
 ### Progress Labeling (Per 20 April 2026)
 
 > ✅ **Status:** Labeling **selesai 100%** — semua artikel valid sudah dilabeli oleh seluruh anggota.
-
 
 | PIC        | Total Baris | Artikel Valid | Terlabel | Positive | Neutral | Negative | Status     |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -397,7 +391,6 @@ Setiap artikel yang valid diberi label sentimen berdasarkan **nada keseluruhan**
 ### Struktur Data Tervalidasi
 
 File Google Sheets diekspor sebagai CSV dengan kolom berikut. **Hanya baris `Valid? = TRUE`** yang diproses ke fase berikutnya:
-
 
 | Kolom          | Tipe    | Keterangan                                |
 | --- | --- | --- |
@@ -446,14 +439,12 @@ Google News RSS hanya menyediakan **deskripsi singkat** (1–2 kalimat snippet).
 
 #### Kenapa Perlu Content Extraction?
 
-
 | Data        | Sumber                  | Panjang Rata-rata | Kualitas untuk NLP       |
 | --- | --- | --- | --- |
 | `Deskripsi` | Google News RSS snippet | ~20–50 kata      | Kurang — terlalu pendek |
 | `Content`   | Scraping dari URL asli  | ~200–1.000 kata  | Baik — paragraf lengkap |
 
 #### Library Ekstraksi Konten
-
 
 | Library         | Keunggulan                                                  |
 | --- | --- |
@@ -466,7 +457,6 @@ Google News RSS hanya menyediakan **deskripsi singkat** (1–2 kalimat snippet).
 from newspaper import Article
 import time
 
-
 def extract_article_content(url, lang='id', timeout=10):
     """Extract full article text from URL."""
     try:
@@ -476,7 +466,6 @@ def extract_article_content(url, lang='id', timeout=10):
         return article.text if len(article.text) > 50 else None
     except Exception:
         return None
-
 
 # Scrape konten dari semua artikel valid
 contents = []
@@ -495,7 +484,6 @@ print(f"Content extracted: {success_rate:.1%}")
 ```
 
 #### Validasi Content
-
 
 | Metric         | Target                        |
 | --- | --- |
@@ -517,7 +505,6 @@ print(df_valid['content_len'].describe())
 
 ### Distribusi Label (Artikel Valid — 1.370 Total)
 
-
 | Label              |  Jumlah  | Proporsi |
 | --- | --- | --- |
 | **Neutral** | 506 | 36,9% |
@@ -526,7 +513,6 @@ print(df_valid['content_len'].describe())
 | **Total berlabel** | **1.370** | **100%** |
 
 ### Distribusi Label (Artikel Diekspor — `dataset_lpdp_konten_raw.csv` — 1.038 Total)
-
 
 | Label              |  Jumlah  | Proporsi |
 | --- | --- | --- |
@@ -549,7 +535,6 @@ print(df_valid['content_len'].describe())
 Mengelompokkan **1.038 artikel yang berhasil di-scrape** (dari 1.370 valid) ke dalam **4 topik utama** menggunakan BERTopic untuk memahami tema dominan sebelum analisis sentimen.
 
 ### Kenapa BERTopic, Bukan LDA?
-
 
 | Aspek                 | LDA (Tradisional)     | BERTopic                            |
 | :-------------------- | :-------------------- | :---------------------------------- |
@@ -607,7 +592,6 @@ for topic_id in range(4):
 
 Notebook 3 telah selesai dijalankan dan menghasilkan model terbaik dengan konfigurasi berikut:
 
-
 | Komponen                          | Nilai                                   |
 | :-------------------------------- | :-------------------------------------- |
 | **Best model**                    | `min_cluster_size=150`, `min_samples=5` |
@@ -618,7 +602,6 @@ Notebook 3 telah selesai dijalankan dan menghasilkan model terbaik dengan konfig
 | **Coverage mapping topik**        | 90,2%                                   |
 
 Distribusi 4 label topik final:
-
 
 | Label Topik Final             | Jumlah | Persentase (dari 937 labeled) |
 | :---------------------------- | :----: | :---------------------------: |
@@ -664,7 +647,6 @@ topic_model.visualize_heatmap()
 
 #### ✅ WAJIB DILAKUKAN (untuk Track B / IndoBERT)
 
-
 | # | Langkah                                                                 | Alasan                                                                                               |
 | :- | :---------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------- |
 | 1 | **Remove HTML tags & artefak scraping**                                 | Tag`<p>`, `<br>`, `&amp;` adalah noise murni dari proses scraping; tidak ada makna semantik          |
@@ -676,7 +658,6 @@ topic_model.visualize_heatmap()
 | 7 | **Gunakan `AutoTokenizer` dari `indobenchmark/indobert-base-p1`**       | IndoBERT punya WordPiece vocabulary sendiri; tidak boleh diganti NLTK                                |
 
 #### 🚫 HARAM DILAKUKAN (Fatal untuk IndoBERT)
-
 
 | # | Langkah                                                     | Mengapa Merusak IndoBERT                                                                                                                                                                     |
 | :- | :---------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -730,7 +711,6 @@ flowchart TD
 
 ### Track A — Detail Tiap Langkah (Heavy Preprocessing untuk TF-IDF/BoW)
 
-
 | Step | Teknik                     | Library                                | Contoh                                                   |
 | :--- | :------------------------- | :------------------------------------- | :------------------------------------------------------- |
 | 1    | Case folding               | Python`str.lower()`                    | `"Alumni LPDP"` → `"alumni lpdp"`                       |
@@ -745,7 +725,6 @@ flowchart TD
 | 10   | Join tokens                | `' '.join(tokens)`                     | `["alumni", "lpdp"]` → `"alumni lpdp"`                  |
 
 ### Track B — Detail Langkah Minimal (IndoBERT)
-
 
 | Step | Teknik                 | Library                            | Contoh                                       |
 | :--- | :--------------------- | :--------------------------------- | :------------------------------------------- |
@@ -782,7 +761,6 @@ df['text_bert'] = df['Content'].apply(preprocess_for_bert)
 
 ### Ringkasan Perbandingan Dua Track
 
-
 | Aspek                        | Track A (TF-IDF/BoW)            | Track B (IndoBERT)                   |
 | :--------------------------- | :------------------------------ | :----------------------------------- |
 | **Case folding**             | ✅ Wajib                        | 🚫 Dilarang                          |
@@ -798,7 +776,6 @@ df['text_bert'] = df['Content'].apply(preprocess_for_bert)
 | **Status**                   | ✅ Selesai                      | ✅ Selesai                           |
 
 ### Hasil Aktual Notebook 4 (Final)
-
 
 | Item        | Track A (TF-IDF/BoW)                                          | Track B (IndoBERT)                      |
 | :---------- | :------------------------------------------------------------ | :-------------------------------------- |
@@ -866,7 +843,6 @@ embedding = outputs.last_hidden_state[:, 0, :]  # [CLS] token
 
 ### Perbandingan Pendekatan
 
-
 | Aspek                | TF-IDF               | BoW          | IndoBERT                        |
 | :------------------- | :------------------- | :----------- | :------------------------------ |
 | **Kecepatan**        | Cepat                | Sangat cepat | Lambat (perlu GPU)              |
@@ -894,14 +870,12 @@ Mengidentifikasi entitas bernama (**orang, organisasi, lokasi**) dalam setiap ar
 
 ### Library
 
-
 | Library                        | Model/Package                    | Kegunaan                                 |
 | :----------------------------- | :------------------------------- | :--------------------------------------- |
 | **Transformers** (HuggingFace) | `cahya/bert-base-indonesian-NER` | NER Bahasa Indonesia (BERT-based)        |
 | **spaCy**                      | `en_core_web_sm`                 | NER Bahasa Inggris + custom`EntityRuler` |
 
 ### Tipe Entitas (Skema IndoBERT-NER)
-
 
 | Label | Tipe         | Contoh                                             |
 | :---- | :----------- | :------------------------------------------------- |
@@ -1342,7 +1316,6 @@ Split stratified 80:20 dari 1.038 artikel (output Phase 8):
 
 ### Tier 1: Baseline Models (Classical ML + TF-IDF)
 
-
 | Model                       | Library                | Karakteristik                                            |
 | :-------------------------- | :--------------------- | :------------------------------------------------------- |
 | **Multinomial Naive Bayes** | `sklearn.naive_bayes`  | Cepat, cocok untuk sparse features, baseline yang solid  |
@@ -1437,7 +1410,6 @@ Tambahkan ke X_train → training set lebih seimbang
 
 #### Target Augmentasi
 
-
 | Label    | Asli | Target | Perlu Generate |
 | :------- | :--: | :----: | :------------: |
 | Positive | 385 |  385  |       0       |
@@ -1520,7 +1492,6 @@ print(pd.Series(y_train_augmented).value_counts())
 
 ### Perbandingan Ekspektasi Performa
 
-
 | Model                        | Estimasi F1 (weighted) | Waktu Training | Hardware               |
 | :--------------------------- | :--------------------- | :------------- | :--------------------- |
 | Naive Bayes + TF-IDF         | 0.65 - 0.75            | Detik          | CPU                    |
@@ -1534,7 +1505,6 @@ print(pd.Series(y_train_augmented).value_counts())
 ## Phase 11: Evaluation Metrics
 
 ### Metrik Utama
-
 
 | Metrik        | Formula                             | Interpretasi                                     |
 | :------------ | :---------------------------------- | :----------------------------------------------- |
@@ -1594,7 +1564,6 @@ Baca per kolom: "Dari 55 yang diprediksi Negative, 45 memang benar Negative"
 ```
 
 ### Metrik Tambahan
-
 
 | Metrik                    | Kegunaan                                                                             |
 | :------------------------ | :----------------------------------------------------------------------------------- |
@@ -1682,7 +1651,6 @@ summary = select_top_sentences(sentence_scores, ratio=0.3)
 
 ### Libraries
 
-
 | Kategori                       | Library                                              | Versi  |
 | :----------------------------- | :--------------------------------------------------- | :----- |
 | **Scraping**                   | GNews, newspaper3k, trafilatura                      | Latest |
@@ -1699,7 +1667,6 @@ summary = select_top_sentences(sentence_scores, ratio=0.3)
 
 ### Pre-trained Models
 
-
 | Model                            | Kegunaan                           | Source       |
 | :------------------------------- | :--------------------------------- | :----------- |
 | `indobenchmark/indobert-base-p1` | Fine-tuning klasifikasi sentimen   | HuggingFace  |
@@ -1707,7 +1674,6 @@ summary = select_top_sentences(sentence_scores, ratio=0.3)
 | `stanza` (id model)              | POS Tagging Bahasa Indonesia       | Stanford NLP |
 
 ### Hardware Requirement
-
 
 | Task                        | Minimum      | Rekomendasi             |
 | :-------------------------- | :----------- | :---------------------- |
@@ -1717,7 +1683,6 @@ summary = select_top_sentences(sentence_scores, ratio=0.3)
 ---
 
 ## Referensi Notebook
-
 
 | Notebook                                            | Relevansi                                        |
 | :-------------------------------------------------- | :----------------------------------------------- |
