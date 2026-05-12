@@ -52,6 +52,7 @@ env/
 *.pth
 *.pt
 *.bin
+*.safetensors
 
 # Temporary files
 *.tmp
