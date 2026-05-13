@@ -1,0 +1,3 @@
+Challenge,Severity,Mitigation
+Prompt Sensitivity,MEDIUM,"A/B test prompts, use prompt engineering best practices"
+Augmentation Bias,MEDIUM,"Conduct error analysis, compute feature attributions (SHAP)"
